@@ -298,6 +298,90 @@ ll.show_all_elems();
 // cl("iscyclic ---- " + ll.isCyclic());
 // ll.show_all_elems();
 
+/*
+
+    LRU - doubly linked list
+
+*/
+class Node {
+  constructor(key, value) {
+    this.key = key;
+    this.val = value;
+    this.prev = null;
+    this.next = null;
+  }
+}
+class Dll {
+  constructor() {
+    this.head = new Node(0, 0);
+    this.tail = new Node(0, 0);
+
+    this.head.next = tail;
+    this.tail.prev = head;
+
+    this.size = 0;
+  }
+  add(node) {
+    node.next = this.tail;
+    node.prev = this.tail.prev;
+
+    this.tail.prev.next = node;
+    this.tail.prev = node;
+    this.size++;
+  }
+  remove(node) {
+    // node.prev.next = node.next;
+    // node.next.prev = node.prev;
+    let next = node.next;
+    let prev = node.prev;
+    prev.next = next;
+    next.prev = prev;
+
+    this.size--;
+  }
+}
+class LRUCache {
+  constructor(capacity) {
+    this.capacity = capacity;
+    this.map = {};
+    this.Dll = new Dll();
+  }
+
+  get(key) {
+    if (this.map[key]) {
+      let node = this.map[key];
+      this.Dll.remove(node);
+      this.Dll.add(node);
+      return node.val;
+    }
+
+    return -1;
+  }
+
+  put(key, value) {
+    let newNode = new Node(key, value);
+    if (this.map[key]) {
+      let oldNode = this.map[key];
+      this.Dll.remove(oldNode);
+    }
+
+    this.Dll.add(newNode);
+    this.map[key] = newNode;
+
+    if (this.Dll.size > this.capacity) {
+      //remove the node after head;
+      let removeNode = this.Dll.head.next;
+      this.Dll.remove(removeNode);
+      delete this.map[removeNode.key];
+    }
+  }
+}
+
+/*
+
+cl func
+
+*/
 function cl(params) {
   console.log(params);
 }
