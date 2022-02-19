@@ -1,7 +1,7 @@
 const maxSubArray = (arr, size) => {
   let currSum = 0;
   let maxSum = -Infinity;
-
+  
   for (let i = 0; i < arr.length; i++) {
     currSum += arr[i];
     if (i >= size - 1) {

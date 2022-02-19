@@ -138,6 +138,35 @@
 // // stck.size();
 // pque.show();
 
+class CircularQueue {
+    constructor(size) {
+      this.front=0
+      this.end=0
+    this.size = size;
+    this.count = 0;
+    this.q = new Array(size);
+  }
+    enqueue(elem) {
+        this.q[this.end++] = elem;
+        this.end = this.end % this.size;
+    this.count++;
+  }
+  dequeue() {
+      let rem = this.q[this.front++];
+        this.front = this.front % this.size;
+      this.count--;
+      return rem;
+  }
+  front() {
+    console.log(this.q[this.front]);
+  }
+}
+const cQue = new CircularQueue(10);
+cQue.enqueue(2);
+cl(cQue.dequeue());
+
+
+
 // ----------------------
 
 // class HashTable {
@@ -169,3 +198,13 @@
 // console.log(ht.get("Human"));
 
 // console.log("Shoaib".charCodeAt(0));
+
+
+/*
+
+cl func
+
+*/
+function cl(params) {
+  console.log(params);
+}
