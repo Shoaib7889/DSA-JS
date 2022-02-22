@@ -145,20 +145,70 @@ let permutations = (p,up) => {
 }
 permutations('', 'abc');
 
-// leetcode17Dial
-let leetcode17Dial = (p,fup,sup) => {
-  if (!fup && !sup) {
-    if (p.length <=2) cl(p);
-    return;
+// leetcode52nQueens
+class leetcode52nQueens{
+  constructor(size) {
+    
   }
-  let ch = fup.charAt(0);
-  let ch2 = sup.charAt(0);
-   
-  leetcode17Dial(p + ch+ch2, fup.substr(1),sup.substr(1));
-  leetcode17Dial(p, fup.substr(1),sup.substr(1));
+  queens(board, row) {
+    if (row == board.length) {
+      this.display(board);
+      cl('');
+      return;
+    }
+    let count = 0;
+    for (let col = 0; col < board.length; col++) {
+      //if specified position is not on attack risk
+      if (this.isSafe(board, row, col)) {
+        board[row][col] = true;
+        count += this.queens(board, row + 1);
+        board[row][col] = false;
+      }
+    }
+
+    return count;
+  }
+  isSafe(board, row, col) {
+    //check vertical top column
+    for (let i = 0; i < row; i++) {
+      if (board[i][col]) {
+        return false;
+      } 
+    }
+    //check left Diag
+    let maxLeft = Math.min(row, col);
+    for (let i = 1; i < maxLeft; i++) {
+      if (board[row-i][col-i]) {
+        return false;
+      } 
+    }
+    //check right Diag
+    let maxRight = Math.min(row, board.length - col - 1);
+    for (let i = 1; i < maxRight; i++) {
+      if (board[row-i][col+i]) {
+        return false;
+      } 
+    }
+
+    return true;
+  }
+  display(board) {
+    for (let i of board) {
+      for (const j of i) {
+        if (board[i][j]) {
+          cl("Q ")
+        } else {
+          cl("X ")
+        }
+      }
+      cl('');
+    }
+  }
 }
-cl('--------')
-leetcode17Dial('', 'abc','def');
+let obj57 = new leetcode52nQueens(4);
+let arr57 = new Array(4).fill(new Array(4));
+obj57.queens(arr57, 0);
+
 /**
  * 
  * cl
