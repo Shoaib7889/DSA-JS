@@ -139,33 +139,31 @@
 // pque.show();
 
 class CircularQueue {
-    constructor(size) {
-      this.front=0
-      this.end=0
+  constructor(size) {
+    this.front = 0;
+    this.end = 0;
     this.size = size;
     this.count = 0;
     this.q = new Array(size);
   }
-    enqueue(elem) {
-        this.q[this.end++] = elem;
-        this.end = this.end % this.size;
+  enqueue(elem) {
+    this.q[this.end++] = elem;
+    this.end = this.end % this.size;
     this.count++;
   }
   dequeue() {
-      let rem = this.q[this.front++];
-        this.front = this.front % this.size;
-      this.count--;
-      return rem;
+    let rem = this.q[this.front++];
+    this.front = this.front % this.size;
+    this.count--;
+    return rem;
   }
   front() {
     console.log(this.q[this.front]);
   }
 }
-const cQue = new CircularQueue(10);
-cQue.enqueue(2);
-cl(cQue.dequeue());
-
-
+// const cQue = new CircularQueue(10);
+// cQue.enqueue(2);
+// cl(cQue.dequeue());
 
 // ----------------------
 
@@ -199,6 +197,58 @@ cl(cQue.dequeue());
 
 // console.log("Shoaib".charCodeAt(0));
 
+function countSort(arr) {
+  const numCount = {};
+  arr.forEach((x) => {
+    numCount[x] ? (numCount[x] += 1) : (numCount[x] = 1);
+  });
+  let resArr = [];
+  for (const x in numCount) {
+    while (numCount[x] > 0) {
+      resArr.push(parseInt(x));
+      numCount[x]--;
+    }
+  }
+  return resArr;
+}
+cl(countSort([1, 3, 4, 1, 10, 5]));
+
+function radixSort(arr) {
+  const getNum = (num, i) => {
+    let strNum = num + "";
+    let len = strNum.length - 1;
+    const foundNum = strNum[len - i];
+
+    if (foundNum) return foundNum;
+    else return 0;
+  };
+  const largestNum = (arr) => {
+    let largest = "0";
+
+    arr.forEach((num) => {
+      const strNum = String(num);
+
+      if (strNum.length > largest.length) largest = strNum;
+    });
+
+    return largest.length;
+  };
+
+  let maxLength = largestNum(arr);
+
+  for (let i = 0; i < maxLength; i++) {
+    let buckets = Array.from({ length: 10 }, () => []);
+
+    for (let j = 0; j < arr.length; j++) {
+      let num = getNum(arr[j], i);
+
+      if (num !== undefined) buckets[num].push(arr[j]);
+    }
+    arr = buckets.flat();
+  }
+  return arr;
+}
+cl(radixSort([3, 2, 4, 1, 5, 6]));
 
 /*
 
