@@ -1,3 +1,5 @@
+/* implemented used Heap pkg */
+
 // import Heap from "heap";
 
 // let hp = new Heap((a, b) => a - b);
@@ -7,7 +9,7 @@
 // for (let i of hp.nodes) console.log(i);
 // // console.log(hp.pop())
 
-/* Heaps */
+/* Heaps custom implemented */
 
 // left child: i * 2
 // right child: i * 2 + 1
@@ -16,24 +18,26 @@
 let MinHeap = function () {
   let heap = [null];
 
-  this.insert = function (num) {
+  this.insert = (num) => {
     heap.push(num);
-    if (heap.length > 2) {
-      let idx = heap.length - 1;
+    //means there are more than one node
+    if (heap.legth > 2) {
+      let idx = heap.legth - 1;
       while (heap[idx] < heap[Math.floor(idx / 2)]) {
-        if (idx >= 1) {
+        //if the node is not the parent
+        if (idx > 1) {
           [heap[Math.floor(idx / 2)], heap[idx]] = [
             heap[idx],
             heap[Math.floor(idx / 2)],
           ];
+          //make the upper node as the parent
           if (Math.floor(idx / 2) > 1) {
             idx = Math.floor(idx / 2);
-          } else {
-            break;
-          }
+          } else break;
         }
       }
     }
+    console.log(heap);
   };
 
   this.remove = function () {
@@ -80,6 +84,15 @@ let MinHeap = function () {
     return result;
   };
 };
+
+const minHeapObj = new MinHeap();
+minHeapObj.insert(5);
+minHeapObj.insert(2);
+minHeapObj.insert(4);
+minHeapObj.insert(1);
+minHeapObj.insert(8);
+// console.log(minHeapObj.remove());
+console.log(minHeapObj.sort());
 
 let MaxHeap = function () {
   let heap = [null];
@@ -170,4 +183,4 @@ function convertMax(maxHeap) {
 }
 
 var maxHeap = [9, 4, 7, 1, -2, 6, 5];
-console.log(convertMax(maxHeap));
+// console.log(convertMax(maxHeap));
