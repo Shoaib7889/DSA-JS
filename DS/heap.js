@@ -1,4 +1,4 @@
-/* implemented used Heap pkg */
+/* implemented using Heap pkg */
 
 // import Heap from "heap";
 
@@ -14,6 +14,8 @@
 // left child: i * 2
 // right child: i * 2 + 1
 // parent: i / 2
+
+/* implemented by custom HEAP */
 
 let MinHeap = function () {
   let heap = [null];

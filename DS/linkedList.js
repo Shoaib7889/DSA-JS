@@ -1,26 +1,3 @@
-// cl(a);
-// var a = 10;
-// {
-//   const a = 20;
-// }
-// cl(a);
-
-// const myfunc = function (params) {
-//   // exp
-// };
-// function name() {
-//   //func statment, declaration
-// }
-
-// getName();
-console.log(x);
-console.log(getName);
-
-var x = 7;
-var getName = function (params) {
-  console.log("my name is shoaib");
-};
-
 class Node {
   constructor(element) {
     this.element = element;
@@ -282,7 +259,7 @@ ll.add(4);
 ll.add(5);
 ll.add(9);
 // ll.mersort();
-ll.show_all_elems();
+// ll.show_all_elems();
 // console.log(ll.head, ll);
 // ll.head = ll.mergeSort(ll.head);
 // ll.add_at_ind(8, 1);

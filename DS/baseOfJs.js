@@ -67,23 +67,23 @@
 //     console.log(b)
 // }
 
-var x = 10;
-a();
-let bb = 2;
-b();
-// console.log(bb)
-console.log(x);
-function a() {
-  var x = 5;
-  console.log(x);
-}
-function b() {
-  console.log(bb);
-}
-// setTimeout(() => {
-//     console.log('ok')
-// },3000)
-console.log(x);
+// var x = 10;
+// a();
+// let bb = 2;
+// b();
+// // console.log(bb)
+// console.log(x);
+// function a() {
+//   var x = 5;
+//   console.log(x);
+// }
+// function b() {
+//   console.log(bb);
+// }
+// // setTimeout(() => {
+// //     console.log('ok')
+// // },3000)
+// console.log(x);
 
 // if (a);
 
@@ -146,6 +146,24 @@ console.log(x);
 // }
 // plainObj(obj,'user');
 // console.log(res_obj)
+
+// var a = 10;
+// {
+//   let a = 20;
+//   console.log(a);
+// }
+// cl(a);
+
+// function aout() {
+//   {let myname = "khan";}
+//   {var myname = "khan";}
+//   console.log(myname);
+// }
+// aout();
+
+//can't do this
+var noOfBattles = "27";
+let noOfBattles = "27";
 
 function cl(param) {
   console.log(param);
