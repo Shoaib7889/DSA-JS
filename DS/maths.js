@@ -100,6 +100,48 @@ cl(sqrt(5));
 // }
 // noOfDigits(10, 2);
 
+/**
+ *
+ *
+ *    Helping functions of js
+ *
+ */
+
+cl(Object.is("asdf", 3)); //check if both values are the same
+cl(Object.is(4, 5)); //false
+cl(Object.is({}, {})); //false
+let fst = {};
+cl(Object.is(fst, fst)); //true
+
+//freez neither modified nor allow new adding
+let stud = {
+  name: "shoaib",
+};
+Object.freeze(stud);
+stud.age = 20;
+stud.name = "m shoaib";
+cl(stud);
+
+//seal can be modified but not allow to add
+let stud2 = {
+  name: "ali",
+};
+Object.seal(stud2);
+stud2.age = "30";
+stud2.name = "ali ahmad";
+cl(stud2);
+
+cl(stud2.valueOf()); //return whole obj || primitive value
+cl(Object.valueOf()); //function
+
+let age = 10;
+cl(age.toString(8)); //converts to octal
+cl(age.toString(2)); //converts to binary
+
+cl(parseInt(10, 2)); //converts to decimal , parseInt(number,balse)
+
+cl("the quick brown fox".at(-3)); //gives last 3rd char
+
 // cl(a);
 function cl(n) {
   console.log(n);

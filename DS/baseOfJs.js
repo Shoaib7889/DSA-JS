@@ -162,8 +162,8 @@
 // aout();
 
 //can't do this
-var noOfBattles = "27";
-let noOfBattles = "27";
+// var noOfBattles = "27";
+// let noOfBattles = "27";
 
 function cl(param) {
   console.log(param);
