@@ -1,3 +1,28 @@
+function binarySearch(arr, t, s, e) {
+  let m = Math.floor((s + e) / 2);
+
+  if (arr[m] == t) return m;
+  // debugger;
+  if (arr[s] <= arr[m]) {
+    if (t >= arr[s] && t <= arr[m]) {
+      return binarySearch(arr, t, s, m - 1);
+    } else {
+      return binarySearch(arr, t, m + 1, e);
+    }
+  }
+
+  if (t >= arr[m] && t <= arr[e]) {
+    return binarySearch(arr, t, m + 1, e);
+  }
+
+  // debugger;
+  return binarySearch(arr, t, s, m - 1);
+}
+let arrr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(binarySearch(arrr, 3, 0, arrr.length - 1));
+
+function bubbleSort() {}
+
 // function fib(n) {
 //   if (n < 2) return n;
 //   return fib(n - 1) + fib(n - 2);
@@ -64,96 +89,93 @@
 // cl(noOfZeros(20300000));
 
 //we can implement the selection sort and buble sort using this method
-//coz these both sorts has O(n^2 ), and this recursion do have so, is like nested two FOR loops 
+//coz these both sorts has O(n^2 ), and this recursion do have so, is like nested two FOR loops
 let triangle = (r, c) => {
   if (r == 0) return;
-  
-  if (c < r) {
-    cl('*')
-    triangle(r, c + 1)
-  } else {
-cl('')
-    triangle(r-1,0)
-  }
-}
-triangle(4, 0)
 
-let selectionSort = (arr,r, c,max) => {
+  if (c < r) {
+    cl("*");
+    triangle(r, c + 1);
+  } else {
+    cl("");
+    triangle(r - 1, 0);
+  }
+};
+triangle(4, 0);
+
+let selectionSort = (arr, r, c, max) => {
   if (r == 0) return;
-  
+
   if (c < r) {
     if (arr[c] > arr[max]) {
-      selectionSort(arr,r , c + 1,c)
+      selectionSort(arr, r, c + 1, c);
     } else {
-      selectionSort(arr, r, c + 1, max)
+      selectionSort(arr, r, c + 1, max);
     }
-    
   } else {
     let temp = arr[max];
     arr[max] = arr[r - 1];
     arr[r - 1] = temp;
     selectionSort(arr, r - 1, 0, 0);
   }
-}
-let arr = [4,3,2,1];
-selectionSort(arr, arr.length, 0, 0)
-cl(arr)
-
+};
+let arr = [4, 3, 2, 1];
+selectionSort(arr, arr.length, 0, 0);
+cl(arr);
 
 /**      Subset and subsequence    */
 
-let subsets = (p,up,arr) => {
+let subsets = (p, up, arr) => {
   if (!up) {
-    cl(p); arr.push(p)
+    cl(p);
+    arr.push(p);
     return;
   }
   let ch = up.charAt(0);
-  
-  subsets(p + ch, up.substr(1),arr);
-  subsets(p , up.substr(1),arr);
-}
-let res =[]
-// subsets('', 'abc', res); 
 
-let subSeqAscii = (p,up) => {
+  subsets(p + ch, up.substr(1), arr);
+  subsets(p, up.substr(1), arr);
+};
+let res = [];
+// subsets('', 'abc', res);
+
+let subSeqAscii = (p, up) => {
   if (!up) {
     cl(p);
     return;
   }
   let ch = up.charAt(0);
-   
+
   subSeqAscii(p + ch, up.substr(1));
-  subSeqAscii(p , up.substr(1));
+  subSeqAscii(p, up.substr(1));
   subSeqAscii(p + ch.charCodeAt(0), up.substr(1));
-}
+};
 // subSeqAscii('', 'abc');
 
 // [1,2,3] - this qn of digits in array to subsets like [1],[2],[3]... is left
 
-let permutations = (p,up) => {
+let permutations = (p, up) => {
   if (!up) {
     cl(p);
     return;
   }
   let ch = up.charAt(0);
-   
+
   for (let i = 0; i <= p.length; i++) {
-    let fst = p.substr(0,i)
+    let fst = p.substr(0, i);
     let snd = p.substr(i, p.length);
-    permutations(fst+ch+snd,up.substr(1));
+    permutations(fst + ch + snd, up.substr(1));
   }
-}
-permutations('', 'abc');
+};
+permutations("", "abc");
 
 // leetcode52nQueens
-class leetcode52nQueens{
-  constructor(size) {
-    
-  }
+class leetcode52nQueens {
+  constructor(size) {}
   queens(board, row) {
     if (row == board.length) {
       this.display(board);
-      cl('');
+      cl("");
       return;
     }
     let count = 0;
@@ -173,21 +195,21 @@ class leetcode52nQueens{
     for (let i = 0; i < row; i++) {
       if (board[i][col]) {
         return false;
-      } 
+      }
     }
     //check left Diag
     let maxLeft = Math.min(row, col);
     for (let i = 1; i < maxLeft; i++) {
-      if (board[row-i][col-i]) {
+      if (board[row - i][col - i]) {
         return false;
-      } 
+      }
     }
     //check right Diag
     let maxRight = Math.min(row, board.length - col - 1);
     for (let i = 1; i < maxRight; i++) {
-      if (board[row-i][col+i]) {
+      if (board[row - i][col + i]) {
         return false;
-      } 
+      }
     }
 
     return true;
@@ -196,12 +218,12 @@ class leetcode52nQueens{
     for (let i of board) {
       for (const j of i) {
         if (board[i][j]) {
-          cl("Q ")
+          cl("Q ");
         } else {
-          cl("X ")
+          cl("X ");
         }
       }
-      cl('');
+      cl("");
     }
   }
 }
@@ -210,9 +232,9 @@ let arr57 = new Array(4).fill(new Array(4));
 obj57.queens(arr57, 0);
 
 /**
- * 
+ *
  * cl
- * 
+ *
  */
 
 function cl(params) {

@@ -1,8 +1,7 @@
-//      if a Num is prime, its multiples will not be primes
-
 function sqrt(x) {
+  let point_percesion = 3;
   let root = 0.0;
-  let left = 1;
+  let left = 0;
   let right = x;
   let ans = null;
   while (left <= right) {
@@ -16,42 +15,43 @@ function sqrt(x) {
       left = mid + 1;
     }
   }
-  return ans;
 
-  // let inc = 0.1;
-  // for (let i = 0; i < 2; i++) {
-  //   while (root * root <= n) {
-  //     root += inc;
-  //   }
-  //   root -= inc;
-  //   inc /= 10;
-  // }
+  let inc = 0.1;
+  for (let i = 0; i < point_percesion; i++) {
+    while (root * root <= x) {
+      root += inc;
+    }
+    root -= inc;
+    inc /= 10;
+  }
+
+  return (ans + root).toFixed(3);
 }
 cl(sqrt(5));
 
-// function newtonRapson(n) {
-//   let x = n;
-//   let root;
-//   while (true) {
-//     root = 0.5 * (x + n / x);
-//     if (Math.abs(root - x) < 1) {
-//       break;
-//     }
-//     x = root;
-//   }
-//   return root;
-// }
+function newtonRapson(n) {
+  let x = n;
+  let root;
+  while (true) {
+    root = 0.5 * (x + n / x);
+    if (Math.abs(root - x) < 1) {
+      break;
+    }
+    x = root;
+  }
+  return root;
+}
 // cl(newtonRapson(36));
 
-// function GCD(a, b) {
-//   if (a == 0) return b;
-//   return GCD(b % a, a);
-// }
-// cl(GCD(4, 9));
+function GCD(a, b) {
+  if (a == 0) return b;
+  return GCD(b % a, a);
+}
+cl(GCD(4, 9));
 
-// function isOdd(n) {
-//   return (n & 1) === 1;
-// }
+function isOdd(n) {
+  return (n & 1) === 1;
+}
 // cl(isOdd(12));
 
 // function uniq(arr) {
@@ -107,42 +107,77 @@ cl(sqrt(5));
  *
  */
 
-cl(Object.is("asdf", 3)); //check if both values are the same
-cl(Object.is(4, 5)); //false
-cl(Object.is({}, {})); //false
-let fst = {};
-cl(Object.is(fst, fst)); //true
+// cl(Object.is("asdf", 3)); //check if both values are the same
+// cl(Object.is(4, 5)); //false
+// cl(Object.is({}, {})); //false
+// let fst = {};
+// cl(Object.is(fst, fst)); //true
 
-//freez neither modified nor allow new adding
-let stud = {
-  name: "shoaib",
-};
-Object.freeze(stud);
-stud.age = 20;
-stud.name = "m shoaib";
-cl(stud);
+// //freez neither modified nor allow new adding
+// let stud = {
+//   name: "shoaib",
+// };
+// Object.freeze(stud);
+// stud.age = 20;
+// stud.name = "m shoaib";
+// cl(stud);
 
-//seal can be modified but not allow to add
-let stud2 = {
-  name: "ali",
-};
-Object.seal(stud2);
-stud2.age = "30";
-stud2.name = "ali ahmad";
-cl(stud2);
+// //seal can be modified but not allow to add
+// let stud2 = {
+//   name: "ali",
+// };
+// Object.seal(stud2);
+// stud2.age = "30";
+// stud2.name = "ali ahmad";
+// cl(stud2);
 
-cl(stud2.valueOf()); //return whole obj || primitive value
-cl(Object.valueOf()); //function
+// cl(stud2.valueOf()); //return whole obj || primitive value
+// cl(Object.valueOf()); //function
 
-let age = 10;
-cl(age.toString(8)); //converts to octal
-cl(age.toString(2)); //converts to binary
+// let age = 10;
+// cl(age.toString(8)); //converts to octal
+// cl(age.toString(2)); //converts to binary
 
-cl(parseInt(10, 2)); //converts to decimal , parseInt(number,balse)
+// cl(parseInt(10, 2)); //converts to decimal , parseInt(number,balse)
 
-cl("the quick brown fox".at(-3)); //gives last 3rd char
+// cl("the quick brown fox".at(-3)); //gives last 3rd char
 
 // cl(a);
+
+// if a Num is prime, its multiples will not be primes
+
+function isPrime(n) {
+  if (n <= 1) {
+    return false;
+  }
+
+  let c = 2;
+  while (c * c <= n) {
+    if (n % c == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function seive(n, primes) {
+  for (let i = 2; i <= n; i++) {
+    if (!primes[i]) {
+      for (let j = i * 2; j <= n; j += i) {
+        primes[j] = true;
+      }
+    }
+  }
+  for (let i = 0; i <= n; i++) {
+    if (!primes[i]) {
+      console.log(i);
+    }
+  }
+}
+let n = 40;
+let primes = Array(n + 1).fill(false);
+seive(n, primes);
+
 function cl(n) {
   console.log(n);
 }
